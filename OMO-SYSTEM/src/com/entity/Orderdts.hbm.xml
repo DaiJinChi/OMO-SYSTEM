@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+          "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.entity.Orderdts" table="orderdts">
+		<id name="odid" type="integer" column="ODID">
+			<generator class="native"></generator>
+		</id>
+		
+		<many-to-one name="meal" class="com.entity.Meal" fetch="select" lazy="false">
+			<column name="MealId"></column>
+		</many-to-one>
+		<many-to-one cascade="all" name="orders" class="com.entity.Orders" fetch="select" lazy="false">
+			<column name="OID"></column>
+		</many-to-one>
+		<property name="mealPrice" type="double" column="MealPrice"></property>
+		<property name="mealCount" type="integer" column="MealCount"></property>
+	</class>
+</hibernate-mapping>

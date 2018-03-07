@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 编码设置 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<package name="show" namespace="/" extends="struts-default">
+		<action name="showMeal" class="mealseriesAction" method="findAllMS">
+			<param name="pageSize">8</param>
+			<result name="success">
+				/show.jsp
+			</result>
+		</action>
+		<action name="byParamMeal" class="mealseriesAction" method="findByParam">
+			<param name="pageSize">8</param>
+			<result name="success">
+				/show.jsp
+			</result>
+		</action>
+		
+		<action name="manager" class="mealseriesAction" method="findAllMS">
+			<param name="pageSize">5</param>
+			<result name="success">
+				/managerMeal.jsp
+			</result>
+		</action>
+		<action name="byParamMealInmanager" class="mealseriesAction" method="findByParam">
+			<param name="pageSize">5</param>
+			<result name="success">
+				/managerMeal.jsp
+			</result>
+		</action>
+		<action name="findMealForUpdate" class="mealseriesAction" method="findMealById">
+			<result name="success">
+				/updateMeal.jsp
+			</result>
+		</action>
+		<action name="updateMeal" class="mealseriesAction" method="updateMeal">
+			<result name="success" type="redirectAction">
+				manager
+			</result>
+		</action>
+		<action name="deleteMeal" class="mealseriesAction" method="deleteMeal">
+			<result name="success" type="redirectAction">
+				manager
+			</result>
+		</action>
+		
+		<action name="findAllOrders" class="ordersAction" method="findAllOrders">
+			<param name="pageSize">5</param>
+			<result name="success">
+				/managerOrders.jsp
+			</result>
+		</action>
+		<action name="doOrder" class="ordersAction" method="doOrder">
+			<result name="success"  type="redirectAction">
+				findAllOrders
+			</result>
+		</action>
+		<action name="findOrdersByParam" class="ordersAction" method="findOrdersByParam">
+			<result name="success">
+				/managerOrders.jsp
+			</result>
+		</action>
+		
+		<action name="detail" class="mealseriesAction" method="findMealById">
+			<result name="success">
+				/details.jsp
+			</result>
+		</action>
+		<action name="cart" class="cartAction" method="addCart">
+			<result name="success">
+				/shopCart.jsp
+			</result>
+		</action>
+		<action name="deleteMealInCart" class="cartAction" method="deleteMealInCart">
+			<result name="success">
+				/shopCart.jsp
+			</result>
+		</action>
+		<action name="clearCart" class="cartAction" method="clearCart">
+			<result name="success">
+				/shopCart.jsp
+			</result>
+		</action>
+		<action name="updateQuantity" class="cartAction" method="updateQuantity">
+			<result name="success">
+				/shopCart.jsp
+			</result>
+		</action>
+		<action name="addOrders" class="ordersAction" method="addOrders">
+			<result name="success">
+				/shopCart.jsp
+			</result>
+		</action>
+		
+		<action name="findOrders" class="ordersAction" method="findOrders">
+			<param name="pageSize">5</param>
+			<result name="success">
+				/myOrders.jsp
+			</result>
+		</action>
+		<action name="deleteOrders" class="ordersAction" method="deleteOrders">
+			<result name="success" type="redirectAction">
+				findOrders
+			</result>
+		</action>
+		
+		<action name="orderDetail" class="ordersAction" method="orderDetail">
+			<result name="success">
+				/myOrdersDetails.jsp
+			</result>
+		</action>
+		<action name="doAddMeal" class="mealAction" method="doAddMeal">
+			<result name="success">
+				/addMeal.jsp
+			</result>
+		</action>
+		<action name="addMeal" class="mealAction" method="addMeal">
+			<result name="success" type="redirectAction">
+				doAddMeal
+			</result>
+		</action>
+	</package>
+	<package name="login" namespace="/" extends="struts-default">
+		<action name="addUser" class="userAction" method="addUser">
+			<result name="success" type="redirectAction">
+				showMeal
+			</result>
+		</action>
+		<action name="checkUser" class="userAction" method="checkUser">
+			<result name="success" type="redirectAction">
+				showMeal
+			</result>
+			<result name="error">
+				/login.jsp
+			</result>
+		</action>
+		<action name="checkAdmin" class="userAction" method="checkAdmin">
+			<result name="success" type="redirectAction">
+				showMeal
+			</result>
+			<result name="error">
+				/login.jsp
+			</result>
+		</action>
+		<action name="updateUser" class="userAction" method="updateUser">
+			<result name="success" type="redirectAction">
+				showMeal
+			</result>
+			<result name="error">
+				/error.jsp
+			</result>
+		</action>
+		<action name="logout" class="userAction" method="logout">
+			<result name="success" type="redirectAction">
+				showMeal
+			</result>
+			<result name="error">
+				/error.jsp
+			</result>
+		</action>
+	</package>
+</struts>

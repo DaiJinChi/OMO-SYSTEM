@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+          "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.entity.Meal" table="meal">
+		<id name="mealId" type="integer" column="mealId">
+			<generator class="native"></generator>
+		</id>
+
+		<many-to-one name="mealseries" class="com.entity.Mealseries" fetch="select" lazy="false">
+			<column name="MealSeriesId"></column>
+		</many-to-one>
+		<property name="mealName" type="string" column="mealName"></property>
+		<property name="mealSummarize" type="string" column="MealSummarize"></property>
+		<property name="mealDescription" type="string" column="MealDescription"></property>
+		<property name="mealPrice" type="double" column="MealPrice"></property>
+		<property name="mealImage" type="string" column="MealImage"></property>
+		<set name="orderdtses" inverse="true" lazy="false" cascade="delete">
+			<key>
+				<column name="MealId"></column>
+			</key>
+			<one-to-many class="com.entity.Orderdts"/>
+		</set>
+	</class>
+</hibernate-mapping>
